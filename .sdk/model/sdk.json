@@ -1,1 +1,1909 @@
-{"name":"branch-aggregate"}
+{
+  "NAME": "BRANCH-AGGREGATE",
+  "Name": "BranchAggregate",
+  "def": "branch-aggregate-openapi.json",
+  "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "github-pages": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "github-pages",
+            "name": "github-pages",
+            "origname": "",
+            "output": {
+              "path": "docs"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          },
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "analytics": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "aggregation",
+              "req": false,
+              "short": "How to count events towards the final result count.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "code",
+              "req": false,
+              "short": "Response code",
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "data_source",
+              "req": true,
+              "short": "A string value representing the data source.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "dimensions",
+              "req": true,
+              "short": "An array representing dimension(s) to group by.",
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "enable_install_calculation",
+              "req": false,
+              "short": "If true, then Branch will de-dupe unattributed installs caused by duplicate events from non-opt-in users coming from paid ads (result from [iOS 14.5 privacy changes](https://help.branch.io/faq/docs/ios-14-faqs)).",
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "format": "date",
+              "name": "end_date",
+              "req": true,
+              "short": "The end of the interval time range represented as an ISO-8601 complete date.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "filters",
+              "req": false,
+              "short": "Keys are same as dimensions.",
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "granularity",
+              "req": false,
+              "short": "The time granularity that each band value will represent.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "job_id",
+              "req": false,
+              "short": "The unique ID of the request.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "format": "date",
+              "name": "start_date",
+              "req": true,
+              "short": "The start of the interval time range represented as an ISO-8601 complete date.",
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "status_url",
+              "req": false,
+              "short": "The URL of the export request.",
+              "type": "`$STRING`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "analytics",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "csv",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "contract": {
+                    "id": "POST /analytics",
+                    "json": "{\"operationId\":\"requestAggregateExport\",\"parameters\":[{\"description\":\"The maximum number of results to return.\",\"explode\":\"true\",\"in\":\"query\",\"name\":\"limit\",\"required\":\"false\",\"schema\":{\"format\":\"int32\",\"maximum\":\"50000\",\"minimum\":\"1\",\"type\":\"integer\"},\"style\":\"form\"},{\"description\":\"Format of returned data. json or csv\",\"explode\":\"true\",\"in\":\"query\",\"name\":\"format\",\"required\":\"false\",\"schema\":{\"default\":\"csv\",\"enum\":[\"csv\",\"json\"],\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"\",\"properties\":{\"aggregation\":{\"default\":\"total_count\",\"description\":\"How to count events towards the final result count.  When querying with a data source of \\\"eo_commerce_event\\\", the aggregation may also be specified as \\\"revenue\\\", in which case the counts returned are the sum of revenue from matching events, and not the number of events themselves.\",\"enum\":[\"unique_count\",\"total_count\",\"revenue\",\"cost\",\"cost-in-local-currency\"],\"type\":\"string\"},\"data_source\":{\"default\":\"eo_install\",\"description\":\"A string value representing the data source.  See [Topics](https://help.branch.io/developers-hub/docs/branch-aggregate-api#topics) for complete list. \",\"enum\":[\"eo_impression\",\"eo_click\",\"eo_web_to_app_auto_redirect\",\"eo_branch_cta_view\",\"eo_open\",\"eo_install\",\"eo_reinstall\",\"eo_web_session_start\",\"eo_pageview\",\"eo_commerce_event\",\"eo_custom_event\",\"eo_content_event\",\"eo_dismissal\",\"eo_user_lifecycle_event\",\"cost\",\"skadnetwork-valid-messages\",\"eo_click_blocked\",\"eo_impression_blocked\",\"eo_install_blocked\",\"eo_reinstall_blocked\",\"eo_open_blocked\",\"eo_web_session_start_blocked\",\"eo_pageview_blocked\",\"eo_custom_event_blocked\",\"eo_content_event_blocked\",\"eo_commerce_event_blocked\",\"eo_user_lifecycle_event_blocked\",\"eo_branch_cta_view_blocked\",\"eo_web_to_app_auto_redirect_blocked\"],\"type\":\"string\"},\"dimensions\":{\"default\":[\"name\"],\"description\":\"An array representing dimension(s) to group by. Limit is 11. See [Dimensions](https://help.branch.io/developers-hub/docs/branch-aggregate-api#dimensions) for complete list.\\n\",\"example\":[\"user_data_os\"],\"items\":{\"enum\":[\"name\",\"app_id\",\"app_name\",\"origin\",\"timestamp\",\"deep_linked\",\"from_desktop\",\"attributed\",\"user_data_app_store\",\"user_data_app_version\",\"user_data_os\",\"user_data_language\",\"user_data_platform\",\"user_data_environment\",\"user_data_geo_dma_code\",\"user_data_geo_country_code\",\"user_data_country\",\"user_data_cpp_level\",\"user_data_geo_region_en\",\"user_data_opted_in\",\"user_data_opted_in_status\",\"last_attributed_touch_type\",\"last_attributed_touch_data_tilde_tags\",\"last_attributed_touch_data_tilde_secondary_publisher\",\"last_attributed_touch_data_tilde_campaign\",\"last_attributed_touch_data_tilde_advertising_partner_name\",\"last_attributed_touch_data_tilde_advertising_partner_id\",\"last_attributed_touch_data_tilde_feature\",\"last_attributed_touch_data_tilde_creative_name\",\"last_attributed_touch_data_tilde_creative_id\",\"last_attributed_touch_data_tilde_ad_name\",\"last_attributed_touch_data_tilde_ad_id\",\"last_attributed_touch_data_tilde_campaign_id\",\"last_attributed_touch_data_tilde_placement\",\"last_attributed_touch_data_tilde_stage\",\"last_attributed_touch_data_tilde_channel\",\"last_attributed_touch_data_tilde_ad_set_name\",\"last_attributed_touch_data_tilde_ad_set_id\",\"last_attributed_touch_data_tilde_keyword\",\"last_attributed_touch_data_tilde_keyword_id\",\"last_attributed_touch_data_tilde_journey_id\",\"last_attributed_touch_data_tilde_view_name\",\"last_attributed_touch_data_tilde_view_id\",\"last_attributed_touch_data_tilde_agency\",\"last_attributed_touch_data_tilde_agency_id\",\"last_attributed_touch_data_tilde_customer_secondary_publisher\",\"last_attributed_touch_data_tilde_customer_ad_set_name\",\"last_attributed_touch_data_tilde_customer_ad_name\",\"last_attributed_touch_data_tilde_customer_keyword\",\"last_attributed_touch_data_tilde_customer_placement\",\"last_attributed_touch_data_tilde_customer_sub_site_name\",\"last_attributed_touch_data_tilde_customer_campaign\",\"last_attributed_touch_data_plus_web_format\",\"last_attributed_touch_data_plus_current_feature\",\"last_attributed_touch_data_plus_via_features\",\"last_attributed_touch_data_plus_aggregate_measurement\",\"last_attributed_touch_data_plus_pam_enabled\",\"last_attributed_touch_data_dollar_marketing_title\",\"last_attributed_touch_data_dollar_meta_is_mobile_data_terms_signed\",\"last_attributed_touch_data_dollar_3p\",\"last_cta_view_data_tilde_ad_name\",\"last_cta_view_data_tilde_secondary_publisher\",\"last_cta_view_data_tilde_campaign\",\"last_cta_view_data_tilde_advertising_partner_name\",\"last_cta_view_data_tilde_feature\",\"last_cta_view_data_tilde_ad_set_name\",\"last_cta_view_data_tilde_ad_set_id\",\"last_cta_view_data_tilde_campaign_id\",\"last_cta_view_data_tilde_creative_name\",\"last_cta_view_data_tilde_creative_id\",\"last_cta_view_data_plus_via_features\",\"last_cta_view_data_dollar_3p\",\"last_cta_view_data_dollar_meta_is_mobile_data_terms_signed\",\"last_cta_view_data_tilde_tags\",\"last_cta_view_data_plus_web_format\",\"last_cta_view_data_tilde_channel\",\"last_cta_view_data_tilde_ad_id\",\"last_cta_view_data_tilde_stage\",\"body_ad_network_id\",\"body_campaign_id\",\"body_app_id\",\"body_redownload\",\"body_source_app_id\",\"body_conversion_value\",\"body_last_attributed_touch_data_tilde_creative_name\",\"body_last_attributed_touch_data_tilde_ad_set_name\",\"body_last_attributed_touch_data_tilde_creative_id\",\"body_last_attributed_touch_data_tilde_ad_set_id\",\"body_last_attributed_touch_data_tilde_ad_name\",\"body_last_attributed_touch_data_tilde_ad_id\",\"body_last_attributed_touch_data_tilde_campaign\",\"body_last_attributed_touch_data_tilde_campaign_id\",\"body_last_attributed_touch_data_tilde_campaign_name\",\"annotation_dollar_3p\",\"annotation_conversion_value_mapped_value\",\"annotation_conversion_value_revision\",\"annotation_campaign_id_mapped_value\",\"annotation_campaign_id_revision\",\"annotation_source_app_id_mapped_value\",\"annotation_source_app_id_revision\",\"annotation_customer_event_alias\",\"install_activity_touch_data_dollar_meta_is_mobile_data_terms_signed\",\"reengagement_activity_touch_data_dollar_meta_is_mobile_data_terms_signed\",\"days_from_last_attributed_touch_to_event\",\"days_from_last_cta_view_to_event\",\"event_data_product_categories\",\"event_data_custom_param_1\",\"event_data_custom_param_2\",\"event_data_custom_param_3\",\"first_event_for_user\",\"customer_event_alias\"],\"type\":\"string\"},\"maxItems\":\"11\",\"minItems\":\"1\",\"type\":\"array\"},\"enable_install_calculation\":{\"default\":\"false\",\"description\":\"If true, then Branch will de-dupe unattributed installs caused by duplicate events from non-opt-in users coming from paid ads (result from [iOS 14.5 privacy changes](https://help.branch.io/faq/docs/ios-14-faqs)).\",\"type\":\"boolean\"},\"end_date\":{\"description\":\"The end of the interval time range represented as an ISO-8601 complete date.\",\"example\":\"2023-05-16\",\"format\":\"date\",\"type\":\"string\"},\"filters\":{\"description\":\"Keys are same as dimensions. Values are an array of values to match for the dimension.\\n\\nAn object defining filters to match or disallow certain values.\",\"example\":{\"attributed\":\"true\",\"user_data_os\":[\"IOS\",\"ANDROID\"]},\"properties\":{\"annotation_campaign_id_mapped_value\":{\"description\":\"SKAdNetwork annotation campaign ID mapped value. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_campaign_id_revision\":{\"description\":\"SKAdNetwork annotation campaign ID revision. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_conversion_value_mapped_value\":{\"description\":\"SKAdNetwork annotation conversion value mapped value. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_conversion_value_revision\":{\"description\":\"SKAdNetwork annotation conversion value revision. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_customer_event_alias\":{\"description\":\"SKAdNetwork annotation customer event alias. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_dollar_3p\":{\"description\":\"SKAdNetwork annotation 3p shortcode. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_source_app_id_mapped_value\":{\"description\":\"SKAdNetwork annotation source app ID mapped value. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"annotation_source_app_id_revision\":{\"description\":\"SKAdNetwork annotation source app ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"app_id\":{\"description\":\"Unique identifier for Branch app of requested data.\",\"items\":{\"example\":\"0000000\",\"type\":\"string\"},\"type\":\"array\"},\"app_name\":{\"description\":\"The name of your Branch App\",\"items\":{\"example\":\"MyApp\",\"type\":\"string\"},\"type\":\"array\"},\"attributed\":{\"description\":\"Whether the event is attributed. This will always be accompanied by last_attributed_touch_type and last_attributed_touch_data. Set automatically server side.\",\"items\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"},\"type\":\"array\"},\"body_ad_network_id\":{\"description\":\"SKAdNetwork ad network ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_app_id\":{\"description\":\"SKAdNetwork App ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_campaign_id\":{\"description\":\"SKAdNetwork campaign ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_conversion_value\":{\"description\":\"SKAdNetwork conversion value. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_ad_id\":{\"description\":\"SKAdNetwork LATD ad ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_ad_name\":{\"description\":\"SKAdNetwork LATD ad name. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_ad_set_id\":{\"description\":\"SKAdNetwork LATD ad set ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_ad_set_name\":{\"description\":\"SKAdNetwork LATD ad set name. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_campaign\":{\"description\":\"SKAdNetwork LATD campaign. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_campaign_id\":{\"description\":\"SKAdNetwork LATD campaign ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_campaign_name\":{\"description\":\"SKAdNetwork LATD campaign name. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_creative_id\":{\"description\":\"SKAdNetwork LATD creative ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_last_attributed_touch_data_tilde_creative_name\":{\"description\":\"SKAdNetwork LATD creative name. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_redownload\":{\"description\":\"SKAdNetwork redownload status. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"body_source_app_id\":{\"description\":\"SKAdNetwork source app ID. Set server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"customer_event_alias\":{\"description\":\"Customers can specify that an event of type \\\"purchase\\\" should have name \\\"buy20tokens\\\". customer_event_alias captures this name, which is additional information. For most events this is likely unnecessary.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"days_from_last_attributed_touch_to_event\":{\"description\":\"Number of days between when the last touch occurred and when this event subsequently occurred. Set automatically server side.\",\"items\":{\"pattern\":\"\\\\d\",\"type\":\"string\"},\"type\":\"array\"},\"days_from_last_cta_view_to_event\":{\"description\":\"Number of days between when the last Branch CTA view occurred and when this event subsequently occurred. Set automatically server side.\",\"items\":{\"pattern\":\"\\\\d\",\"type\":\"string\"},\"type\":\"array\"},\"deep_linked\":{\"description\":\"True if the current app or web session resulted in the user being deep linked. Set automatically server side.\",\"items\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"},\"type\":\"array\"},\"event_data_product_categories\":{\"description\":\"Iterate over content_items and aggregate the `category` from each product. Specified by the client.\",\"items\":{\"enum\":[\"ANIMALS_AND_PET_SUPPLIES\",\"APPAREL_AND_ACCESSORIES\",\"ARTS_AND_ENTERTAINMENT\",\"BABY_AND_TODDLER\",\"BUSINESS_AND_INDUSTRIAL\",\"CAMERAS_AND_OPTICS\",\"ELECTRONICS\",\"FOOD_BEVERAGES_AND_TOBACCO\",\"FURNITURE\",\"HARDWARE\",\"HEALTH_AND_BEAUTY\",\"HOME_AND_GARDEN\",\"LUGGAGE_AND_BAGS\",\"MATURE\",\"MEDIA\",\"OFFICE_SUPPLIES\",\"RELIGIOUS_AND_CEREMONIAL\",\"SOFTWARE\",\"SPORTING_GOODS\",\"TOYS_AND_GAMES\",\"VEHICLES_AND_PARTS\"],\"type\":\"string\"},\"type\":\"array\"},\"first_event_for_user\":{\"description\":\"If this is the first time for this persona that this event has been triggered. Set automatically server side.\",\"items\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"},\"type\":\"array\"},\"from_desktop\":{\"description\":\"True if the last attributed touch originated on desktop and the user continued through to mobile via Text Me The App. Set automatically server side.\",\"items\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"},\"type\":\"array\"},\"install_activity_touch_data_dollar_meta_is_mobile_data_terms_signed\":{\"default\":\"false\",\"description\":\"Whether the Meta mobile data terms have been signed for the Install Touch. When true, Meta does not require Branch to scrub Meta-related data from this record.\",\"type\":\"boolean\"},\"last_attributed_touch_data_dollar_3p\":{\"description\":\"The third party that was part of the last touch.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_dollar_marketing_title\":{\"description\":\"Marketing title of the Branch Link.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_dollar_meta_is_mobile_data_terms_signed\":{\"default\":\"false\",\"description\":\"Whether the Meta mobile data terms have been signed for the Last Attributed Touch. When true, Meta does not require Branch to scrub Meta-related data from this attribution record.\",\"type\":\"boolean\"},\"last_attributed_touch_data_plus_aggregate_measurement\":{\"default\":\"false\",\"description\":\"Aggregate measurement associated with the last attributed touch.\",\"type\":\"boolean\"},\"last_attributed_touch_data_plus_current_feature\":{\"description\":\"Branch feature (determined by Branch) of the current touch. Set automatically server side.\",\"items\":{\"enum\":[\"EMAIL\",\"ADS\",\"DESKTOP_JOURNEYS\",\"MOBILE_JOURNEYS\",\"DESKTOP_DEEPVIEWS\",\"MOBILE_DEEPVIEWS\",\"SOCIAL\",\"QUICK_LINKS\",\"APP_CLIP\"],\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_plus_pam_enabled\":{\"default\":\"false\",\"description\":\"Whether PAM was enabled for the last attributed touch.\",\"type\":\"boolean\"},\"last_attributed_touch_data_plus_via_features\":{\"description\":\"All Branch features (determined by Branch) which were determined, via attribution, to have led to this event. For example, if an email link click leads to a Journey which leads to the app, the published eo_open will have +via_features: [EMAIL, JOURNEYS]. set automatically server side.\",\"items\":{\"enum\":[\"EMAIL\",\"ADS\",\"DESKTOP_JOURNEYS\",\"MOBILE_JOURNEYS\",\"DESKTOP_DEEPVIEWS\",\"MOBILE_DEEPVIEWS\",\"SOCIAL\",\"QUICK_LINKS\",\"APP_CLIP\"],\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_plus_web_format\":{\"description\":\"Set if an event originated with a touch on Google AMP or Facebook Instant Article. Specified by the client.\",\"items\":{\"enum\":[\"AMP\",\"INSTANT_ARTICLES\"],\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_ad_id\":{\"description\":\"Ad ID specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_ad_name\":{\"description\":\"Ad name specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_ad_set_id\":{\"description\":\"Ad set ID specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_ad_set_name\":{\"description\":\"Ad set name specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_advertising_partner_id\":{\"description\":\"ID for the advertising partner specified for the last attributed touch. Set automatically server side OR specified by the client, for now, specific to partners migrating from TUNE.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_advertising_partner_name\":{\"description\":\"Human-readable advertising partner name specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_agency\":{\"description\":\"Agency of the last touch, as set with an analytics tag. Agency that runs ad campaigns on behalf of advertiser.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_agency_id\":{\"description\":\"ID of agency of the last touch, as set with an analytics tag. Agency that runs ad campaigns on behalf of advertiser.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_campaign\":{\"description\":\"Campaign (name) specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_campaign_id\":{\"description\":\"Campaign ID specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_channel\":{\"description\":\"Channel specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_creative_id\":{\"description\":\"Creative ID specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_creative_name\":{\"description\":\"Creative name specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_ad_name\":{\"description\":\"Customer ad name.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_ad_set_name\":{\"description\":\"Customer ad set name.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_campaign\":{\"description\":\"Customer campaign.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_keyword\":{\"description\":\"Customer keyword.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_placement\":{\"description\":\"Customer placement.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_secondary_publisher\":{\"description\":\"Customer secondary publisher.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_customer_sub_site_name\":{\"description\":\"Customer sub site name.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_feature\":{\"description\":\"Feature specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_journey_id\":{\"description\":\"Audience rule id for a Journey. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_keyword\":{\"description\":\"Keyword specified for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_keyword_id\":{\"description\":\"Keyword ID for the last attributed touch. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_placement\":{\"description\":\"Placement of the last touch, as set with an analytics tag. Actual app or website the ad appears on display campaigns.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_secondary_publisher\":{\"description\":\"Secondary publisher specified for the last attributed touch. Passed by the ad network.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_stage\":{\"description\":\"Stage specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_tags\":{\"description\":\"Tags specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_view_id\":{\"description\":\"Branch View ID for a Journey. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_data_tilde_view_name\":{\"description\":\"\\\"View Name\\\" or \\\"title\\\" for a branch view / template. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_attributed_touch_type\":{\"description\":\"Whether the last attributed touch was an impression, a click, or a web to app auto redirect. Set automatically server side.\",\"items\":{\"enum\":[\"CLICK\",\"WEB_TO_APP_AUTO_REDIRECT\",\"IMPRESSION\"],\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_dollar_3p\":{\"description\":\"Advertising partner short-code (e.g. e_rs) specified for the last Branch CTA view. Specified by the client.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_dollar_meta_is_mobile_data_terms_signed\":{\"default\":\"false\",\"description\":\"Whether the Meta mobile data terms have been signed for the Last CTA View Touch. When true, Meta does not require Branch to scrub Meta-related data from this CTA view record.\",\"type\":\"boolean\"},\"last_cta_view_data_plus_via_features\":{\"description\":\"All Branch features (determined by Branch) which were determined, via attribution, to have led to this event. For example, if an email link click leads to a Journeys CTA view, the published eo_branch_cta_view will have +via_features: [EMAIL, JOURNEYS]. set automatically server side.\",\"items\":{\"enum\":[\"EMAIL\",\"ADS\",\"DESKTOP\",\"JOURNEYS\",\"MOBILE_JOURNEYS\",\"DESKTOP_DEEPVIEWS\",\"MOBILE_DEEPVIEWS\",\"SOCIAL\",\"QUICK_LINKS\"],\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_plus_web_format\":{\"description\":\"Set if an event originated with a Branch CTA view on Google AMP or Facebook Instant Article. Specified by the client.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_ad_id\":{\"description\":\"Ad ID specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_ad_name\":{\"description\":\"Ad name specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_ad_set_id\":{\"description\":\"Ad Set ID specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_ad_set_name\":{\"description\":\"Ad set name specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_advertising_partner_name\":{\"description\":\"Human-readable advertising partner name specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_campaign\":{\"description\":\"Campaign (name) specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_campaign_id\":{\"description\":\"Campaign id specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_channel\":{\"description\":\"Channel specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_creative_id\":{\"description\":\"Creative ID specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_creative_name\":{\"description\":\"Creative name specified for the last Branch CTA view. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_feature\":{\"description\":\"Feature specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_secondary_publisher\":{\"description\":\"Secondary publisher specified for the last Branch CTA view. Passed by the ad network.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_stage\":{\"description\":\"Stage specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"last_cta_view_data_tilde_tags\":{\"description\":\"Tags specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the event, such as \\\"CLICK\\\", \\\"INSTALL\\\", \\\"PURCHASE\\\" or custom event names like \\\"UpdateSettings\\\". Set either by the client (e.g. custom events) or automatically server side. See [events](https://help.branch.io/developers-hub/docs/tracking-commerce-content-lifecycle-and-custom-events#available-events) for Standard Events enum.\",\"items\":{\"example\":\"INSTALL\",\"type\":\"string\"},\"type\":\"array\"},\"origin\":{\"description\":\"Whether the event originated with a Branch SDK/API call, or was sent by Segment or mParticle. Set automatically server side.\",\"items\":{\"enum\":[\"BRANCH\",\"SEGMENT\",\"MPARTICLE\"],\"type\":\"string\"},\"type\":\"array\"},\"reengagement_activity_touch_data_dollar_meta_is_mobile_data_terms_signed\":{\"default\":\"false\",\"description\":\"Whether the Meta mobile data terms have been signed for the Reengagement Touch. When true, Meta does not require Branch to scrub Meta-related data from this reengagement record.\",\"type\":\"boolean\"},\"timestamp\":{\"description\":\"Unix timestamp in milliseconds for the event. Set automatically server side.\",\"items\":{\"example\":\"1651159080\",\"type\":\"string\"},\"type\":\"array\"},\"user_data_country\":{\"description\":\"Country, derived from user agent string or request body field. Specified by the client.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_cpp_level\":{\"description\":\"Consumer Protection Preference level.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_environment\":{\"description\":\"Runtime environment where the event occurred, which can distinguish between e.g. full app vs instant app. Specified by the client.\",\"items\":{\"enum\":[\"FULL_WEB\",\"FULL_APP\",\"IMESSAGE_APP\",\"INSTANT_APP\",\"TV_WEB\",\"TV_APP\",\"APP_CLIP\"],\"type\":\"string\"},\"type\":\"array\"},\"user_data_geo_country_code\":{\"description\":\"Country code, derived from IP address. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_geo_dma_code\":{\"description\":\"DMA code, derived from IP address. https://support.google.com/richmedia/answer/2745487?hl=en. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_geo_region_en\":{\"description\":\"Human-readable region, derived from IP address. Set automatically server side.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_language\":{\"description\":\"Language specified in the user_agent string (or in some cases other headers), Specified by the client.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_opted_in\":{\"description\":\"Boolean for whether the second OPEN can be inferred as INSTALL after opt-in. If set, the event can be considered as our synthetic OPEN generated by api-open by inspecting incoming event parameters with persona data. If the event is not considered as the second OPEN, the flag is not present. Only available for iOS14.5 or higher\",\"items\":{\"enum\":[\"true\",\"false\"],\"type\":\"string\"},\"type\":\"array\"},\"user_data_opted_in_status\":{\"description\":\"Current authorization status of opt-in flag for iOS14.5 or higher traffic. The flag is sent directly from the SDK.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"user_data_os\":{\"description\":\"Operating System (OS) of the device where the event occurred. Note that robots include web and app robots for easy filtering. Specified by the client.\",\"items\":{\"enum\":[\"AMAZON_FIRE\",\"AMAZON_FIRE_TV\",\"ANDROID\",\"BADA\",\"BEOS\",\"BLACKBERRY\",\"BSD\",\"CENTOS\",\"CHROMIUM_OS\",\"DEBIAN\",\"DRAGONFLY\",\"FEDORA\",\"FIREFOX_OS\",\"FREEBSD\",\"GENTOO\",\"GNU\",\"IOS\",\"JOLI\",\"KUBUNTU\",\"LINUX\",\"MAC_OS\",\"MANDRIVA\",\"MEEGO\",\"MINT\",\"NETBSD\",\"NINTENDO\",\"OPENBSD\",\"OS_2\",\"OTHER\",\"PLAYSTATION\",\"RIM_TABLET_OS\",\"ROBOTS\",\"SAILFISH\",\"SLACKWARE\",\"SOLARIS\",\"SUSE\",\"SYMBIAN\",\"TIZEN\",\"TVOS\",\"UBUNTU\",\"UNIX\",\"WINDOWS\",\"WINDOWS_PHONE\",\"ZENWALK\",\"ROKU\",\"SAMSUNG\",\"ANDROID_TV\",\"LG\",\"PANASONIC\"],\"type\":\"string\"},\"type\":\"array\"},\"user_data_platform\":{\"description\":\"Convenience dimension that allows users to easily see web vs app, desktop vs mobile, and iOS vs Android vs other. Derived from information specified by the client.\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"granularity\":{\"default\":\"day\",\"description\":\"The time granularity that each band value will represent.\",\"enum\":[\"day\",\"week\",\"month\"],\"type\":\"string\"},\"start_date\":{\"description\":\"The start of the interval time range represented as an ISO-8601 complete date.\",\"example\":\"2023-05-15\",\"format\":\"date\",\"type\":\"string\"}},\"required\":[\"start_date\",\"end_date\",\"data_source\",\"dimensions\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n  \\\"code\\\": 200,\\n  \\\"job_id\\\": \\\"XXXX-0000-xxxx\\\",\\n  \\\"status_url\\\": \\\"https://api2.branch.io/v2/analytics/{JOB_ID_HERE}\\\"\\n}\"}},\"schema\":{\"properties\":{\"code\":{\"example\":\"200\",\"type\":\"integer\"},\"job_id\":{\"description\":\"The unique ID of the request. This is used in the [Export Download Status request](https://help.branch.io/developers-hub/docs/branch-aggregate-api#export-download-status).\\n\",\"example\":\"XXXX-0000-xxxx\",\"type\":\"string\"},\"status_url\":{\"description\":\"The URL of the export request.\",\"example\":\"https://api2.branch.io/v2/analytics/{JOB_ID_HERE}\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Status of aggregate export\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Authentication failed !\\\",\\n        \\\"code\\\": 400\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"400\",\"type\":\"integer\"},\"message\":{\"example\":\"Authentication failed !\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Authentication Failed\"},\"429\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"code\\\": 429,\\n        \\\"message\\\": \\\"Rate limit reached.\\\"\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"429\",\"type\":\"integer\"},\"message\":{\"example\":\"Rate limit reached.\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Rate Limit Reached\"},\"500\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Our product is failing to serve your request at this moment. Please try again later.\\\",\\n        \\\"code\\\": 500\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"500\",\"type\":\"integer\"},\"message\":{\"example\":\"Internal Server Error\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Internal Server Error\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
+                  "kind": "http",
+                  "method": "POST",
+                  "orig": "/analytics",
+                  "segments": [
+                    {
+                      "lit": "analytics"
+                    }
+                  ],
+                  "select": {
+                    "exist": [
+                      "format",
+                      "limit"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "job_id",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "app_id",
+                        "orig": "app_id",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "csv",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "contract": {
+                    "id": "GET /analytics/{job_id}",
+                    "json": "{\"operationId\":\"getExportDownloadStatus\",\"parameters\":[{\"description\":\"The unique ID of the request. Obtained from the [Export Request](https://help.branch.io/developers-hub/docs/branch-aggregate-api#export-request).\\n\",\"explode\":\"false\",\"in\":\"path\",\"name\":\"job_id\",\"required\":\"true\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"},{\"description\":\"Unique identifier for Branch app of requested data.\",\"in\":\"query\",\"name\":\"app_id\",\"required\":\"true\",\"schema\":{\"type\":\"string\"}},{\"description\":\"The maximum number of results to return.\",\"explode\":\"true\",\"in\":\"query\",\"name\":\"limit\",\"required\":\"false\",\"schema\":{\"format\":\"int32\",\"maximum\":\"50000\",\"minimum\":\"1\",\"type\":\"integer\"},\"style\":\"form\"},{\"description\":\"Format of returned data. json or csv\",\"explode\":\"true\",\"in\":\"query\",\"name\":\"format\",\"required\":\"false\",\"schema\":{\"default\":\"csv\",\"enum\":[\"csv\",\"json\"],\"type\":\"string\"},\"style\":\"form\"}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n  \\\"code\\\": 200\\n  \\\"status\\\": \\\"FINISHED\\\"\\n  \\\"response_url\\\": \\\"https://branch-exports-usw2.s3.amazonaws.com/partner-query/2023-05-12-2023-05-19-eo_install-day-unique-id-here.csv?Signature={SIGNATURE_HERE}%3D&AWSAccessKeyId={AWS_ACCESS_KEY_ID_HERE}&Expires={EXPIRATION_HERE}\\\"\\n}\"}},\"schema\":{\"properties\":{\"code\":{\"description\":\"Response code\",\"example\":\"200\",\"type\":\"integer\"},\"job_id\":{\"description\":\"The unique ID of the request.\",\"example\":\"XXXX-0000-xxxx\",\"type\":\"string\"},\"status_url\":{\"description\":\"The URL of the export request.\",\"example\":\"https://api2.branch.io/v2/analytics/{JOB_ID_HERE}\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Status of aggregate export\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Authentication failed !\\\",\\n        \\\"code\\\": 400\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"400\",\"type\":\"integer\"},\"message\":{\"example\":\"Authentication failed !\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Authentication Failed\"},\"404\":{\"description\":\"Job ID Not Found\"},\"429\":{\"content\":{\"application/json\":{\"examples\":{\"Result\":{\"value\":\"{\\n    \\\"error\\\": {\\n        \\\"code\\\": 429,\\n        \\\"message\\\": \\\"Rate limit reached.\\\"\\n    }\\n}\"}},\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":\"429\",\"type\":\"integer\"},\"message\":{\"example\":\"Rate limit reached.\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Rate Limit Reached\"}},\"security\":[{\"accessToken\":[]}],\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
+                  "kind": "http",
+                  "method": "GET",
+                  "orig": "/analytics/{job_id}",
+                  "rename": {
+                    "param": {
+                      "job_id": "id"
+                    }
+                  },
+                  "segments": [
+                    {
+                      "lit": "analytics"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "select": {
+                    "exist": [
+                      "app_id",
+                      "format",
+                      "id",
+                      "limit"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "debug": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "max": 100,
+              "redact": [
+                "authorization",
+                "cookie",
+                "set-cookie",
+                "api-key",
+                "apikey",
+                "x-api-key",
+                "idempotency-key"
+              ]
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "onEntry": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreDone": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PreUnexpected": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "debug",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Request/response capture ring buffer for debugging",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "idempotency": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "header": "Idempotency-Key",
+              "methods": [
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+              ],
+              "ops": [
+                "create",
+                "update",
+                "remove"
+              ]
+            },
+            "optspec": {
+              "keygen": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "idempotency",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Idempotency keys for safe retries of mutating operations",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "metrics": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "now": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreDone": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PreUnexpected": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "metrics",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Statistics capture: per-operation counters and latency",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "paging": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "afterVar": "after",
+              "cursorParam": "cursor",
+              "firstVar": "first",
+              "limitParam": "limit",
+              "pageParam": "page",
+              "startPage": 1
+            },
+            "optspec": {
+              "limit": "`$NUMBER`",
+              "ops": "`$LIST`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "paging",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Pagination signals for list operations",
+          "transport": "none",
+          "version": "0.0.1"
+        },
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "js": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicAnalyticsFlow": {
+          "active": true,
+          "entity": "analytics",
+          "key$": "BasicAnalyticsFlow",
+          "kind": "basic",
+          "name": "BasicAnalyticsFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "analytics_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            },
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "analytics_ref01",
+                "srcdatavar": "analytics_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "analytics01"
+              },
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-analytics_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "contact": {
+          "email": "support@branch.io",
+          "name": "Branch Support",
+          "url": "https://help.branch.io/using-branch/page/submit-a-ticket"
+        },
+        "description": "Export log-level and aggregate-level data for measuring campaign performance.",
+        "servers": [
+          {
+            "url": "https://api2.branch.io/v2"
+          }
+        ],
+        "summary": "Export log-level and aggregate-level data for measuring campaign performance.",
+        "termsOfService": "https://branch.io/policies/",
+        "title": "Aggregate API",
+        "version": "1.0.0",
+        "website": "https://api2.branch.io"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "go": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "go",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-cli",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-mcp",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go MCP server"
+        },
+        "js": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            }
+          },
+          "ext": "js",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "js",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.js"
+          ],
+          "title": "JavaScript"
+        },
+        "lua": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "lua",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "php",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "py",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
+          "title": "Python"
+        },
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "branch-aggregate",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      }
+    }
+  },
+  "name": "branch-aggregate",
+  "name-": "branch-aggregate",
+  "name_": "branch_aggregate",
+  "name__orig": "branch-aggregate",
+  "origin": "voxgig-sdk"
+}

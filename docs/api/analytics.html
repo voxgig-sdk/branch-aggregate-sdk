@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Analytics | Aggregate API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Aggregate API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/branch-aggregate-sdk">voxgig-sdk/branch-aggregate-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Aggregate API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a aria-current="page" href="../api/analytics.html">Analytics</a><div class="nav-sections"><a class="nav-section" href="#post-analytics">POST /analytics</a>
+<a class="nav-section" href="#get-analyticsjob_id">GET /analytics/{job_id}</a></div></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="analytics">Analytics</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-analytics"><code>/analytics</code></a></td>
+<td><code>create</code></td>
+<td>Status of aggregate export</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-analyticsjob_id"><code>/analytics/{job_id}</code></a></td>
+<td><code>load</code></td>
+<td>Status of aggregate export</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>How to count events towards the final result count.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Response code</td>
+</tr>
+<tr>
+<td><code>data_source</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string value representing the data source.</td>
+</tr>
+<tr>
+<td><code>dimensions</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>An array representing dimension(s) to group by.</td>
+</tr>
+<tr>
+<td><code>enable_install_calculation</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, then Branch will de-dupe unattributed installs caused by duplicate events from non-opt-in users coming from paid ads (result from <a href="https://help.branch.io/faq/docs/ios-14-faqs">iOS 14.5 privacy changes</a>).</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The end of the interval time range represented as an ISO-8601 complete date.</td>
+</tr>
+<tr>
+<td><code>filters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Keys are same as dimensions.</td>
+</tr>
+<tr>
+<td><code>granularity</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The time granularity that each band value will represent.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique ID of the request.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The start of the interval time range represented as an ISO-8601 complete date.</td>
+</tr>
+<tr>
+<td><code>status_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL of the export request.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-analytics" class="operation" data-method="post"><code>POST</code> /analytics</h3>
+<p>Operation ID: <code>requestAggregateExport</code>.</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>limit</code> | <code>query</code> | <code>integer (int32)</code> | Yes | The maximum number of results to return. |
+| <code>format</code> | <code>query</code> | <code>enum: csv, json</code> | Yes | Format of returned data. json or csv |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregation</code></td>
+<td><code>enum: unique_count, total_count, revenue, cost, cost-in-local-currency</code></td>
+<td>No</td>
+<td>How to count events towards the final result count. When querying with a data source of &quot;eo_commerce_event&quot;, the aggregation may also be specified as &quot;revenue&quot;, in which case the counts returned are the sum of revenue from matching events, and not the number of events themselves.</td>
+</tr>
+<tr>
+<td><code>data_source</code></td>
+<td><code>enum: eo_impression, eo_click, eo_web_to_app_auto_redirect, eo_branch_cta_view, eo_open, eo_install, ...</code></td>
+<td>Yes</td>
+<td>A string value representing the data source. See <a href="https://help.branch.io/developers-hub/docs/branch-aggregate-api#topics">Topics</a> for complete list.</td>
+</tr>
+<tr>
+<td><code>dimensions</code></td>
+<td><code>array of enum: name, app_id, app_name, origin, timestamp, deep_linked, ...</code></td>
+<td>Yes</td>
+<td>An array representing dimension(s) to group by. Limit is 11. See <a href="https://help.branch.io/developers-hub/docs/branch-aggregate-api#dimensions">Dimensions</a> for complete list.</td>
+</tr>
+<tr>
+<td><code>enable_install_calculation</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If true, then Branch will de-dupe unattributed installs caused by duplicate events from non-opt-in users coming from paid ads (result from <a href="https://help.branch.io/faq/docs/ios-14-faqs">iOS 14.5 privacy changes</a>).</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td><code>string (date)</code></td>
+<td>Yes</td>
+<td>The end of the interval time range represented as an ISO-8601 complete date.</td>
+</tr>
+<tr>
+<td><code>filters</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Keys are same as dimensions. Values are an array of values to match for the dimension. An object defining filters to match or disallow certain values.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_campaign_id_mapped_value</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation campaign ID mapped value. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_campaign_id_revision</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation campaign ID revision. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_conversion_value_mapped_value</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation conversion value mapped value. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_conversion_value_revision</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation conversion value revision. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_customer_event_alias</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation customer event alias. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_dollar_3p</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation 3p shortcode. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_source_app_id_mapped_value</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation source app ID mapped value. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.annotation_source_app_id_revision</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork annotation source app ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.app_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Unique identifier for Branch app of requested data.</td>
+</tr>
+<tr>
+<td><code>filters.app_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The name of your Branch App</td>
+</tr>
+<tr>
+<td><code>filters.attributed</code></td>
+<td><code>array of enum: true, false</code></td>
+<td>No</td>
+<td>Whether the event is attributed. This will always be accompanied by last_attributed_touch_type and last_attributed_touch_data. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_ad_network_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork ad network ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_app_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork App ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_campaign_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork campaign ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_conversion_value</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork conversion value. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_ad_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD ad ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_ad_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD ad name. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_ad_set_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD ad set ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_ad_set_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD ad set name. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_campaign</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD campaign. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_campaign_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD campaign ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_campaign_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD campaign name. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_creative_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD creative ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_last_attributed_touch_data_tilde_creative_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork LATD creative name. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_redownload</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork redownload status. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.body_source_app_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>SKAdNetwork source app ID. Set server side.</td>
+</tr>
+<tr>
+<td><code>filters.customer_event_alias</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customers can specify that an event of type &quot;purchase&quot; should have name &quot;buy20tokens&quot;. customer_event_alias captures this name, which is additional information. For most events this is likely unnecessary.</td>
+</tr>
+<tr>
+<td><code>filters.days_from_last_attributed_touch_to_event</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Number of days between when the last touch occurred and when this event subsequently occurred. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.days_from_last_cta_view_to_event</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Number of days between when the last Branch CTA view occurred and when this event subsequently occurred. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.deep_linked</code></td>
+<td><code>array of enum: true, false</code></td>
+<td>No</td>
+<td>True if the current app or web session resulted in the user being deep linked. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.event_data_product_categories</code></td>
+<td><code>array of enum: ANIMALS_AND_PET_SUPPLIES, APPAREL_AND_ACCESSORIES, ARTS_AND_ENTERTAINMENT, BABY_AND_TODDLER, BUSINESS_AND_INDUSTRIAL, CAMERAS_AND_OPTICS, ...</code></td>
+<td>No</td>
+<td>Iterate over content_items and aggregate the <code>category</code> from each product. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.first_event_for_user</code></td>
+<td><code>array of enum: true, false</code></td>
+<td>No</td>
+<td>If this is the first time for this persona that this event has been triggered. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.from_desktop</code></td>
+<td><code>array of enum: true, false</code></td>
+<td>No</td>
+<td>True if the last attributed touch originated on desktop and the user continued through to mobile via Text Me The App. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.install_activity_touch_data_dollar_meta_is_mobile_data_terms_signed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the Meta mobile data terms have been signed for the Install Touch. When true, Meta does not require Branch to scrub Meta-related data from this record.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_dollar_3p</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The third party that was part of the last touch.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_dollar_marketing_title</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Marketing title of the Branch Link.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_dollar_meta_is_mobile_data_terms_signed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the Meta mobile data terms have been signed for the Last Attributed Touch. When true, Meta does not require Branch to scrub Meta-related data from this attribution record.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_plus_aggregate_measurement</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Aggregate measurement associated with the last attributed touch.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_plus_current_feature</code></td>
+<td><code>array of enum: EMAIL, ADS, DESKTOP_JOURNEYS, MOBILE_JOURNEYS, DESKTOP_DEEPVIEWS, MOBILE_DEEPVIEWS, ...</code></td>
+<td>No</td>
+<td>Branch feature (determined by Branch) of the current touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_plus_pam_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether PAM was enabled for the last attributed touch.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_plus_via_features</code></td>
+<td><code>array of enum: EMAIL, ADS, DESKTOP_JOURNEYS, MOBILE_JOURNEYS, DESKTOP_DEEPVIEWS, MOBILE_DEEPVIEWS, ...</code></td>
+<td>No</td>
+<td>All Branch features (determined by Branch) which were determined, via attribution, to have led to this event. For example, if an email link click leads to a Journey which leads to the app, the published eo_open will have +via_features: [EMAIL, JOURNEYS]. set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_plus_web_format</code></td>
+<td><code>array of enum: AMP, INSTANT_ARTICLES</code></td>
+<td>No</td>
+<td>Set if an event originated with a touch on Google AMP or Facebook Instant Article. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_ad_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad ID specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_ad_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad name specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_ad_set_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad set ID specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_ad_set_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad set name specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_advertising_partner_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>ID for the advertising partner specified for the last attributed touch. Set automatically server side OR specified by the client, for now, specific to partners migrating from TUNE.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_advertising_partner_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Human-readable advertising partner name specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_agency</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Agency of the last touch, as set with an analytics tag. Agency that runs ad campaigns on behalf of advertiser.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_agency_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>ID of agency of the last touch, as set with an analytics tag. Agency that runs ad campaigns on behalf of advertiser.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_campaign</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Campaign (name) specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_campaign_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Campaign ID specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_channel</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Channel specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_creative_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Creative ID specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_creative_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Creative name specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_ad_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer ad name.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_ad_set_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer ad set name.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_campaign</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer campaign.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_keyword</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer keyword.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_placement</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer placement.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_secondary_publisher</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer secondary publisher.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_customer_sub_site_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Customer sub site name.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_feature</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Feature specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_journey_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Audience rule id for a Journey. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_keyword</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Keyword specified for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_keyword_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Keyword ID for the last attributed touch. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_placement</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Placement of the last touch, as set with an analytics tag. Actual app or website the ad appears on display campaigns.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_secondary_publisher</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Secondary publisher specified for the last attributed touch. Passed by the ad network.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_stage</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Stage specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Tags specified for the last attributed touch. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_view_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Branch View ID for a Journey. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_data_tilde_view_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>&quot;View Name&quot; or &quot;title&quot; for a branch view / template. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_attributed_touch_type</code></td>
+<td><code>array of enum: CLICK, WEB_TO_APP_AUTO_REDIRECT, IMPRESSION</code></td>
+<td>No</td>
+<td>Whether the last attributed touch was an impression, a click, or a web to app auto redirect. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_dollar_3p</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Advertising partner short-code (for example e_rs) specified for the last Branch CTA view. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_dollar_meta_is_mobile_data_terms_signed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the Meta mobile data terms have been signed for the Last CTA View Touch. When true, Meta does not require Branch to scrub Meta-related data from this CTA view record.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_plus_via_features</code></td>
+<td><code>array of enum: EMAIL, ADS, DESKTOP, JOURNEYS, MOBILE_JOURNEYS, DESKTOP_DEEPVIEWS, ...</code></td>
+<td>No</td>
+<td>All Branch features (determined by Branch) which were determined, via attribution, to have led to this event. For example, if an email link click leads to a Journeys CTA view, the published eo_branch_cta_view will have +via_features: [EMAIL, JOURNEYS]. set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_plus_web_format</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Set if an event originated with a Branch CTA view on Google AMP or Facebook Instant Article. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_ad_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad ID specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_ad_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad name specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_ad_set_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad Set ID specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_ad_set_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ad set name specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_advertising_partner_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Human-readable advertising partner name specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_campaign</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Campaign (name) specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_campaign_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Campaign id specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_channel</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Channel specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_creative_id</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Creative ID specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_creative_name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Creative name specified for the last Branch CTA view. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_feature</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Feature specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_secondary_publisher</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Secondary publisher specified for the last Branch CTA view. Passed by the ad network.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_stage</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Stage specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.last_cta_view_data_tilde_tags</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Tags specified for the last Branch CTA view. Can be specified on links by the client, or prefilled automatically server side in some cases.</td>
+</tr>
+<tr>
+<td><code>filters.name</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>The name of the event, such as &quot;CLICK&quot;, &quot;INSTALL&quot;, &quot;PURCHASE&quot; or custom event names like &quot;UpdateSettings&quot;. Set either by the client (for example custom events) or automatically server side. See <a href="https://help.branch.io/developers-hub/docs/tracking-commerce-content-lifecycle-and-custom-events#available-events">events</a> for Standard Events enum.</td>
+</tr>
+<tr>
+<td><code>filters.origin</code></td>
+<td><code>array of enum: BRANCH, SEGMENT, MPARTICLE</code></td>
+<td>No</td>
+<td>Whether the event originated with a Branch SDK/API call, or was sent by Segment or mParticle. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.reengagement_activity_touch_data_dollar_meta_is_mobile_data_terms_signed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the Meta mobile data terms have been signed for the Reengagement Touch. When true, Meta does not require Branch to scrub Meta-related data from this reengagement record.</td>
+</tr>
+<tr>
+<td><code>filters.timestamp</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Unix timestamp in milliseconds for the event. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_country</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Country, derived from user agent string or request body field. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_cpp_level</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Consumer Protection Preference level.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_environment</code></td>
+<td><code>array of enum: FULL_WEB, FULL_APP, IMESSAGE_APP, INSTANT_APP, TV_WEB, TV_APP, ...</code></td>
+<td>No</td>
+<td>Runtime environment where the event occurred, which can distinguish between for example full app vs instant app. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_geo_country_code</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Country code, derived from IP address. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_geo_dma_code</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>DMA code, derived from IP address. https://support.google.com/richmedia/answer/2745487?hl=en. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_geo_region_en</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Human-readable region, derived from IP address. Set automatically server side.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_language</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Language specified in the user_agent string (or in some cases other headers), Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_opted_in</code></td>
+<td><code>array of enum: true, false</code></td>
+<td>No</td>
+<td>Boolean for whether the second OPEN can be inferred as INSTALL after opt-in. If set, the event can be considered as our synthetic OPEN generated by api-open by inspecting incoming event parameters with persona data. If the event is not considered as the second OPEN, the flag is not present. Only available for iOS14.5 or higher</td>
+</tr>
+<tr>
+<td><code>filters.user_data_opted_in_status</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Current authorization status of opt-in flag for iOS14.5 or higher traffic. The flag is sent directly from the SDK.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_os</code></td>
+<td><code>array of enum: AMAZON_FIRE, AMAZON_FIRE_TV, ANDROID, BADA, BEOS, BLACKBERRY, ...</code></td>
+<td>No</td>
+<td>Operating System (OS) of the device where the event occurred. Note that robots include web and app robots for easy filtering. Specified by the client.</td>
+</tr>
+<tr>
+<td><code>filters.user_data_platform</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Convenience dimension that allows users to easily see web vs app, desktop vs mobile, and iOS vs Android vs other. Derived from information specified by the client.</td>
+</tr>
+<tr>
+<td><code>granularity</code></td>
+<td><code>enum: day, week, month</code></td>
+<td>No</td>
+<td>The time granularity that each band value will represent.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td><code>string (date)</code></td>
+<td>Yes</td>
+<td>The start of the interval time range represented as an ISO-8601 complete date.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-status-of-aggregate-export" class="status" data-status="2xx">200: Status of aggregate export</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique ID of the request. This is used in the <a href="https://help.branch.io/developers-hub/docs/branch-aggregate-api#export-download-status">Export Download Status request</a>.</td>
+</tr>
+<tr>
+<td><code>status_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL of the export request.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-authentication-failed" class="status" data-status="4xx">400: Authentication Failed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="429-rate-limit-reached" class="status" data-status="4xx">429: Rate Limit Reached</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="500-internal-server-error" class="status" data-status="5xx">500: Internal Server Error</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-analyticsjob_id" class="operation" data-method="get"><code>GET</code> /analytics/{job_id}</h3>
+<p>Operation ID: <code>getExportDownloadStatus</code>.</p>
+<p>Authentication: credential (<code>accessToken</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>job_id</code> | <code>path</code> | <code>string</code> | Yes | The unique ID of the request. Obtained from the <a href="https://help.branch.io/developers-hub/docs/branch-aggregate-api#export-request">Export Request</a>. |
+| <code>app_id</code> | <code>query</code> | <code>string</code> | Yes | Unique identifier for Branch app of requested data. |
+| <code>limit</code> | <code>query</code> | <code>integer (int32)</code> | Yes | The maximum number of results to return. |
+| <code>format</code> | <code>query</code> | <code>enum: csv, json</code> | Yes | Format of returned data. json or csv |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-status-of-aggregate-export-1" class="status" data-status="2xx">200: Status of aggregate export</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Response code</td>
+</tr>
+<tr>
+<td><code>job_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique ID of the request.</td>
+</tr>
+<tr>
+<td><code>status_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL of the export request.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-authentication-failed-1" class="status" data-status="4xx">400: Authentication Failed</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-job-id-not-found" class="status" data-status="4xx">404: Job ID Not Found</h5>
+<h5 id="429-rate-limit-reached-1" class="status" data-status="4xx">429: Rate Limit Reached</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.code</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>error.message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>
